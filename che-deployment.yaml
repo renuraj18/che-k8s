@@ -33,7 +33,6 @@ spec:
               scheme: HTTP
             initialDelaySeconds: 120
             timeoutSeconds: 10
-          name: che
           ports:
           - containerPort: 8080
             name: http
