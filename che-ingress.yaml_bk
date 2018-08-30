@@ -3,7 +3,7 @@ kind: Ingress
 metadata:
   name: che-ingress
   annotations:
-#    nginx.ingress.kubernetes.io/rewrite-target: /
+    nginx.ingress.kubernetes.io/rewrite-target: /
     nginx.ingress.kubernetes.io/proxy-read-timeout: "3600"
     nginx.ingress.kubernetes.io/proxy-connect-timeout: "3600"
 spec:
@@ -11,11 +11,6 @@ spec:
   - host: a55ecb0a5ab5f11e895a102fb6b9cd9d-1275764020.ap-south-1.elb.amazonaws.com
     http:
       paths:
-      - path: /
-        backend:
+      - backend:
           serviceName: che-host
           servicePort: 8080
-      - path: /auth/
-        backend:
-          serviceName: keycloak
-          servicePort: 5050

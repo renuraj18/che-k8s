@@ -30,7 +30,7 @@ spec:
             timeoutSeconds: 5
           args:
             - /nginx-ingress-controller
-            - --default-backend-service=default/default-backend
+            - --default-backend-service=ethan/default-backend
             - --configmap=\$(POD_NAMESPACE)/nginx-ingress-controller-conf
             - --v=2
           env:

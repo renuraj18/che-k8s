@@ -13,7 +13,7 @@ metadata:
 subjects:
 - kind: ServiceAccount
   name: che
-  namespace: default
+  namespace: ethan
 roleRef:
   kind: ClusterRole
   name: cluster-admin

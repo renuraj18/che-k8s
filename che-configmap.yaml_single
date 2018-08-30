@@ -23,22 +23,7 @@ data:
   CHE_LOCAL_CONF_DIR: /etc/conf
   CHE_LOGS_DIR: /data/logs
   CHE_LOG_LEVEL: "INFO"
-  CHE_MULTIUSER: "true"
-  CHE_KEYCLOAK_CLIENT__ID: "che-public"
-  CHE_KEYCLOAK_AUTH__SERVER__URL: "http://a55ecb0a5ab5f11e895a102fb6b9cd9d-1275764020.ap-south-1.elb.amazonaws.com/auth"
-  CHE_KEYCLOAK_REALM: "che"
-  CHE_KEYCLOAK_TOKEN_ENDPOINT: "http://a55ecb0a5ab5f11e895a102fb6b9cd9d-1275764020.ap-south-1.elb.amazonaws.com/auth/realms/che/protocol/openid-connect/token"
-  CHE_KEYCLOAK_PROFILE_ENDPOINT: "http://a55ecb0a5ab5f11e895a102fb6b9cd9d-1275764020.ap-south-1.elb.amazonaws.com/auth/realms/che/account"
-  CHE_KEYCLOAK_PASSWORD_ENDPOINT: "http://a55ecb0a5ab5f11e895a102fb6b9cd9d-1275764020.ap-south-1.elb.amazonaws.com/auth/realms/che/account/password"
-  CHE_KEYCLOAK_LOGOUT_ENDPOINT: "http://a55ecb0a5ab5f11e895a102fb6b9cd9d-1275764020.ap-south-1.elb.amazonaws.com/auth/realms/che/protocol/openid-connect/logout"
-  CHE_JDBC_USERNAME: pgche
-  CHE_JDBC_PASSWORD: pgchepassword
-  CHE_JDBC_DATABASE: dbche
-  CHE_JDBC_URL: "jdbc:postgresql://postgres-che:5432/dbche"
-  CHE_JDBC_DRIVER__CLASS__NAME: "org.postgresql.Driver"
-  CHE_JDBC_MAX__TOTAL: "20"
-  CHE_JDBC_MAX__IDLE: "10"
-  CHE_JDBC_MAX__WAIT__MILLIS: "-1"
+  CHE_MULTIUSER: "false"
   CHE_OAUTH_GITHUB_CLIENTID: ""
   CHE_OAUTH_GITHUB_CLIENTSECRET: ""
   CHE_PREDEFINED_STACKS_RELOAD__ON__START: "false"

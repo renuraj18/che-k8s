@@ -12,5 +12,5 @@ spec:
     targetPort: 8080
   selector:
     app: che
-  type:
-    NodePort
+#  type:
+#    NodePort

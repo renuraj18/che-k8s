@@ -13,3 +13,5 @@ spec:
       name: http-mgmt
   selector:
     app: nginx-ingress-lb
+  type:
+    LoadBalancer
