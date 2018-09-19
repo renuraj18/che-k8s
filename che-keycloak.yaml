@@ -74,9 +74,15 @@ spec:
         - name: KEYCLOAK_PASSWORD
           value: admin-che
         - name: CHE_HOST
+<<<<<<< HEAD
           value: ab6fdaa30a9bd11e8836a02fb6b9cd9d-1575434308.ap-south-1.elb.amazonaws.com
         - name: ROUTING_SUFFIX
           value: ab6fdaa30a9bd11e8836a02fb6b9cd9d-1575434308.ap-south-1.elb.amazonaws.com
+=======
+          value: a55ecb0a5ab5f11e895a102fb6b9cd9d-1275764020.ap-south-1.elb.amazonaws.com
+        - name: ROUTING_SUFFIX
+          value: a55ecb0a5ab5f11e895a102fb6b9cd9d-1275764020.ap-south-1.elb.amazonaws.com
+>>>>>>> 549a22e1d72dea4a34434f9a8855370ba60f3178
         - name: NAMESPACE
           value: ethan
         - name: PROTOCOL

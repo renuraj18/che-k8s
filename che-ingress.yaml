@@ -23,6 +23,7 @@ spec:
         backend:
           serviceName: keycloak
           servicePort: 5050
+<<<<<<< HEAD
       - path: /vault/
         backend:
           serviceName: vault
@@ -35,3 +36,5 @@ spec:
         backend:
           serviceName: store-fe
           servicePort: 5000
+=======
+>>>>>>> 549a22e1d72dea4a34434f9a8855370ba60f3178

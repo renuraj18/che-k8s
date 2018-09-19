@@ -12,5 +12,10 @@ spec:
     targetPort: 8080
   selector:
     app: che
+<<<<<<< HEAD
   type:
     ClusterIP
+=======
+#  type:
+#    NodePort
+>>>>>>> 549a22e1d72dea4a34434f9a8855370ba60f3178
