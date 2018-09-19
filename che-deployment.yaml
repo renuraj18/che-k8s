@@ -58,6 +58,5 @@ spec:
       serviceAccountName: che
       volumes:
       - name: che-data-volume
-#         persistentVolumeClaim:
-#           claimName: che-data-volume
-        emptyDir: {}
+        persistentVolumeClaim:
+          claimName: che-data-volume

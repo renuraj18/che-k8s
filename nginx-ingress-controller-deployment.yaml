@@ -30,9 +30,10 @@ spec:
             timeoutSeconds: 5
           args:
             - /nginx-ingress-controller
-            - --default-backend-service=default/default-backend
+            - --default-backend-service=ethan/default-backend
             - --configmap=\$(POD_NAMESPACE)/nginx-ingress-controller-conf
             - --v=2
+            - --default-ssl-certificate=$(POD_NAMESPACE)/nginx-ssl-cert   
           env:
             - name: POD_NAME
               valueFrom:
@@ -45,3 +46,11 @@ spec:
           ports:
             - containerPort: 80
             - containerPort: 18080
+            - containerPort: 443
+          volumeMounts:
+            - mountPath: /etc/nginx-ssl/dhparam
+              name: tls-dhparam-vol
+      volumes:
+        - name: tls-dhparam-vol
+          secret:
+            secretName: nginx-ssl-cert

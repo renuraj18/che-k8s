@@ -1,0 +1,157 @@
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  labels:
+    app: che-keycloak
+  name: che-keycloak
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  namespace: ethan
+  name: che-endpoints-monitor
+rules:
+- apiGroups: [""]
+  resources: ["services", "endpoints", "pods"]
+  verbs: ["get", "list"]
+---
+apiVersion: rbac.authorization.k8s.io/v1beta1
+kind: RoleBinding
+metadata:
+  name: ethan-keycloak-role-binding
+roleRef:
+  kind: Role
+  name: che-endpoints-monitor
+  apiGroup: rbac.authorization.k8s.io
+subjects:
+- kind: ServiceAccount
+  name: che-keycloak
+  namespace: ethan
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: "keycloak"
+spec:
+  ports:
+  - name: "5050"
+    port: 5050
+    targetPort: 8080
+  selector:
+    app: keycloak
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  labels:
+    app: keycloak
+  name: keycloak
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: keycloak
+    spec:
+      initContainers:
+      - name: wait-for-postgres
+        image: alpine:3.5
+        command: ["sh", "-c", "apk --no-cache add curl jq ; adresses_length=0; until [ $adresses_length -gt 0 ]; do echo waiting for postgres to be ready...; sleep 2; endpoints=`curl -s --cacert /var/run/secrets/kubernetes.io/serviceaccount/ca.crt -H \"Authorization: Bearer $(cat /var/run/secrets/kubernetes.io/serviceaccount/token)\"     https://kubernetes.default/api/v1/namespaces/$POD_NAMESPACE/endpoints/postgres`; adresses_length=`echo $endpoints | jq -r \".subsets[]?.addresses // [] | length\"`; done;"]
+        env:
+          - name: POD_NAMESPACE
+            valueFrom:
+              fieldRef:
+                fieldPath: metadata.namespace
+      containers:
+      - env:
+        - name: POSTGRES_PORT_5432_TCP_ADDR
+          value: postgres
+        - name: POSTGRES_PORT_5432_TCP_PORT
+          value: "5432"
+        - name: POSTGRES_DATABASE
+          value: keycloak
+        - name: POSTGRES_USER
+          value: keycloak
+        - name: POSTGRES_PASSWORD
+          value: keycloak
+        - name: KEYCLOAK_USER
+          value: admin
+        - name: KEYCLOAK_PASSWORD
+          value: admin
+        - name: CHE_HOST
+          value: a76ddd26ca76011e8976602fb6b9cd9d-418547405.ap-south-1.elb.amazonaws.com
+        - name: ROUTING_SUFFIX
+          value: a76ddd26ca76011e8976602fb6b9cd9d-418547405.ap-south-1.elb.amazonaws.com
+        - name: NAMESPACE
+          value: ethan
+        - name: PROTOCOL
+          value: http
+        - name: PROXY_ADDRESS_FORWARDING
+          value: true
+        image: eclipse/che-keycloak:nightly
+        command: ["/scripts/kc_realm_user.sh"]
+        imagePullPolicy: Always
+        name: keycloak
+        livenessProbe:
+          failureThreshold: 11
+          initialDelaySeconds: 5
+          periodSeconds: 5
+          successThreshold: 1
+          tcpSocket:
+            port: 8080
+          timeoutSeconds: 30
+        readinessProbe:
+          failureThreshold: 10
+          httpGet:
+            path: auth/js/keycloak.js
+            port: 8080
+            scheme: HTTP
+          initialDelaySeconds: 10
+          periodSeconds: 3
+          successThreshold: 1
+          timeoutSeconds: 1
+        ports:
+        - containerPort: 8080
+        resources:
+          limits:
+            memory: 1536Mi
+          requests:
+            memory: 1024Mi
+        volumeMounts:
+        - mountPath: /opt/jboss/keycloak/standalone/data
+          name: keycloak-data
+        - mountPath: /opt/jboss/keycloak/standalone/log
+          name: keycloak-log
+      restartPolicy: Always
+      serviceAccountName: che-keycloak
+      volumes:
+      - name: keycloak-data
+        persistentVolumeClaim:
+          claimName: keycloak-data
+      - name: keycloak-log
+        persistentVolumeClaim:
+          claimName: keycloak-log
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: keycloak-data
+spec:
+  accessModes:
+  - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: keycloak-log
+spec:
+  accessModes:
+  - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi
+

@@ -11,9 +11,13 @@ metadata:
 #    nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
 #    kubernetes.io/tls-acme: "true"
 spec:
+#  tls:
+#    - hosts:
+#      - abe924631aaa811e8a07c02fb6b9cd9d-1912341954.ap-south-1.elb.amazonaws.com 
+#      secretName: nginx-ssl-cert
   rules:
-  - host: a55ecb0a5ab5f11e895a102fb6b9cd9d-1275764020.ap-south-1.elb.amazonaws.com
-    http:
+#  - host: 'abe924631aaa811e8a07c02fb6b9cd9d-1912341954.ap-south-1.elb.amazonaws.com'
+  - http:
       paths:
       - path: /
         backend:
@@ -23,15 +27,3 @@ spec:
         backend:
           serviceName: keycloak
           servicePort: 5050
-      - path: /vault/
-        backend:
-          serviceName: vault
-          servicePort: 8200
-      - path: /bdpweb/
-        backend:
-          serviceName: bdpweb
-          servicePort: 8082 
-      - path: /store/
-        backend:
-          serviceName: store-fe
-          servicePort: 5000

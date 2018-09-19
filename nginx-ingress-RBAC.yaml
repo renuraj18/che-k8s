@@ -66,4 +66,4 @@ roleRef:
 subjects:
 - kind: ServiceAccount
   name: nginx
-  namespace: default
+  namespace: ethan

@@ -5,10 +5,10 @@ metadata:
     app: che
   name: che
 data:
-  CHE_HOST: "http://abe924631aaa811e8a07c02fb6b9cd9d-1912341954.ap-south-1.elb.amazonaws.com"
+  CHE_HOST: "http://ab6fdaa30a9bd11e8836a02fb6b9cd9d-1575434308.ap-south-1.elb.amazonaws.com"
   CHE_PORT: "8080"
-  CHE_API: "http://abe924631aaa811e8a07c02fb6b9cd9d-1912341954.ap-south-1.elb.amazonaws.com/api"
-  CHE_WEBSOCKET_ENDPOINT:  "ws://abe924631aaa811e8a07c02fb6b9cd9d-1912341954.ap-south-1.elb.amazonaws.com/api/websocket"
+  CHE_API: "http://ab6fdaa30a9bd11e8836a02fb6b9cd9d-1575434308.ap-south-1.elb.amazonaws.com/api"
+  CHE_WEBSOCKET_ENDPOINT:  ws://a76ddd26ca76011e8976602fb6b9cd9d-418547405.ap-south-1.elb.amazonaws.com/api/websocket
   CHE_DEBUG_SERVER: "true"
   CHE_INFRASTRUCTURE_ACTIVE: kubernetes
   CHE_INFRA_KUBERNETES_BOOTSTRAPPER_BINARY__URL: http://che-host:8080/agent-binaries/linux_amd64/bootstrapper/bootstrapper
@@ -21,25 +21,10 @@ data:
   CHE_INFRA_KUBERNETES_PVC_QUANTITY: 3Gi
   CHE_INFRA_KUBERNETES_POD_SECURITY__CONTEXT_RUN__AS__USER: "0"
   CHE_INFRA_KUBERNETES_POD_SECURITY__CONTEXT_FS__GROUP: "0"
-  CHE_MULTIUSER: "true"
-  CHE_KEYCLOAK_CLIENT__ID: "che-public"
-  CHE_KEYCLOAK_AUTH__SERVER__URL: "http://abe924631aaa811e8a07c02fb6b9cd9d-1912341954.ap-south-1.elb.amazonaws.com/auth"
-  CHE_KEYCLOAK_REALM: "che"
-  CHE_KEYCLOAK_TOKEN_ENDPOINT: "http://abe924631aaa811e8a07c02fb6b9cd9d-1912341954.ap-south-1.elb.amazonaws.com/auth/realms/che/protocol/openid-connect/token"
-  CHE_KEYCLOAK_PROFILE_ENDPOINT: "http://abe924631aaa811e8a07c02fb6b9cd9d-1912341954.ap-south-1.elb.amazonaws.com/auth/realms/che/account"
-  CHE_KEYCLOAK_PASSWORD_ENDPOINT: "http://abe924631aaa811e8a07c02fb6b9cd9d-1912341954.ap-south-1.elb.amazonaws.com/auth/realms/che/account/password"
-  CHE_KEYCLOAK_LOGOUT_ENDPOINT: "http://abe924631aaa811e8a07c02fb6b9cd9d-1912341954.ap-south-1.elb.amazonaws.com/auth/realms/che/protocol/openid-connect/logout"
-  CHE_JDBC_USERNAME: pgche 
-  CHE_JDBC_PASSWORD: pgchepassword
-  CHE_JDBC_DATABASE: dbche
-  CHE_JDBC_URL: "jdbc:postgresql://postgres-che:5432/dbche"
-  CHE_JDBC_DRIVER__CLASS__NAME: "org.postgresql.Driver"
-  CHE_JDBC_MAX__TOTAL: "20"
-  CHE_JDBC_MAX__IDLE: "10"
-  CHE_JDBC_MAX__WAIT__MILLIS: "-1"
   CHE_LOCAL_CONF_DIR: /etc/conf
   CHE_LOGS_DIR: /data/logs
   CHE_LOG_LEVEL: "INFO"
+  CHE_MULTIUSER: "false"
   CHE_OAUTH_GITHUB_CLIENTID: ""
   CHE_OAUTH_GITHUB_CLIENTSECRET: ""
   CHE_PREDEFINED_STACKS_RELOAD__ON__START: "false"
@@ -47,7 +32,7 @@ data:
   CHE_WORKSPACE_AUTO_START: "false"
   CHE_INFRA_KUBERNETES_INGRESS_ANNOTATIONS__JSON: '{"nginx.ingress.kubernetes.io/rewrite-target": "/","nginx.ingress.kubernetes.io/ssl-redirect": "false","nginx.ingress.kubernetes.io/proxy-connect-timeout": "3600","nginx.ingress.kubernetes.io/proxy-read-timeout": "3600"}'
   CHE_LOGS_APPENDERS_IMPL: "plaintext"
-  CHE_INFRA_KUBERNETES_INGRESS_DOMAIN: abe924631aaa811e8a07c02fb6b9cd9d-1912341954.ap-south-1.elb.amazonaws.com
+  CHE_INFRA_KUBERNETES_INGRESS_DOMAIN: "a76ddd26ca76011e8976602fb6b9cd9d-418547405.ap-south-1.elb.amazonaws.com"
   CHE_INFRA_KUBERNETES_SERVER__STRATEGY: "single-host"
   CHE_WORKSPACE_FEATURE_API: "http://marketplace:80"
 
