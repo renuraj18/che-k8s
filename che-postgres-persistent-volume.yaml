@@ -1,9 +1,11 @@
+---
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
+  creationTimestamp: null
   labels:
-    app: che
-  name: che-data-volume
+    io.kompose.service: postgres-che-data
+  name: postgres-che-data
   annotations:
     volume.beta.kubernetes.io/storage-class: "ebs"
 spec:
