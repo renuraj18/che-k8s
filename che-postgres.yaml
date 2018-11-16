@@ -30,7 +30,7 @@ spec:
           value: "pgchepassword"
         - name: "CHE_POSTGRES_DATABASE"
           value: "dbche"
-        image: eclipse/che-postgres:nightly
+        image: eclipse/che-postgres:6.13.0
         securityContext:
           runAsUser: 26
         imagePullPolicy: Always
